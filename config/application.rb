@@ -17,6 +17,7 @@ module TimeToAnswer
     # the framework and any gems in your application.
 
     config.assets.paths << Rails.root.join('lib', 'assets', 'javascripts')
+    
 
 
     config.generators.system_tests = nil
