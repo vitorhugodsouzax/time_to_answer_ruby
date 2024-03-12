@@ -6,7 +6,8 @@ class AdminsBackoffice::AdminsController < AdminsBackofficeController
 
 
   def edit
- @admin = Admin.find(params [:id])
+    @admin = Admin.find(params[:id])
+
   end
 
 end
