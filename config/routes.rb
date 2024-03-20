@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
   namespace :admins_backoffice do
     get 'welcome/index'  #dashboard
-    resources :admins, only: [:index, :edit, :update]  #crie todas as rotas porem me de somente o index   , [administradores]
+    resources :admins, except: [:delete] 
   end
   devise_for :admins
   devise_for :users
