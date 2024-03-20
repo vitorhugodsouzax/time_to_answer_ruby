@@ -6,8 +6,8 @@ class AdminsBackoffice::AdminsController < AdminsBackofficeController
 
   # Ação para listar todos os administradores
   def index
-    @admins = Admin.all    # Serve para listar todos os administradores
-  end
+    @admins = Admin.all .page params[:page] # Serve para listar todos os administradores
+    end
 
   # Ação para criar um novo administrador
   def new
