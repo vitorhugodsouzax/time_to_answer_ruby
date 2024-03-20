@@ -2,7 +2,7 @@ class AdminsBackoffice::AdminsController < AdminsBackofficeController
   # Antes de executar a ação 'update', chama o método 'verify_password'
   before_action :verify_password, only: [:update]
   # Antes de executar as ações 'edit' e 'update', chama o método 'set_admin'
-  before_action :set_admin, only: [:edit, :update]
+  before_action :set_admin, only: [:edit, :update, :destroy]
 
   # Ação para listar todos os administradores
   def index
@@ -36,6 +36,15 @@ class AdminsBackoffice::AdminsController < AdminsBackofficeController
       render :edit
     end
   end
+
+  def destroy
+    if @admin.destroy
+    redirect_to admins_backoffice_admins_path, notice:
+   "Administrador excluído com sucesso!"
+    else
+    render :index
+    end
+    end
 
   private
 
