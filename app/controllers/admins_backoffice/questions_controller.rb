@@ -50,7 +50,8 @@ class AdminsBackoffice::QuestionsController < AdminsBackofficeController
       @question = Question.find(params[:id])
     end
 
-    def get_subjects
-    @subjects = Subjects.All
-  end
+   def get_subjects
+  @subjects = Subject.all
+end
+
 end
