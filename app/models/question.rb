@@ -10,4 +10,8 @@ class Question < ApplicationRecord
   # O parâmetro :reject_if => :all_blank indica que os atributos de Answer serão rejeitados se estiverem em branco.
   # O parâmetro :allow_destroy => true permite a destruição de Answers associados através da Question.
   accepts_nested_attributes_for :answers, reject_if: :all_blank, allow_destroy: true
+
+
+# Kaminari
+ paginates_per 5
 end
