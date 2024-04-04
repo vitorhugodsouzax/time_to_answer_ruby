@@ -10,3 +10,4 @@ class Site::SearchController < SiteController
     end
   end
   
+  #eu poderia usar a biblioteca "Full Text Search" em vez de usar o operador LIKE
