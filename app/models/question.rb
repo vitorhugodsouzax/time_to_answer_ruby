@@ -14,4 +14,16 @@ class Question < ApplicationRecord
 
 # Kaminari
  paginates_per 5
+
+
+ def self.search(page, term)
+  Question.includes(:answers)  # Carrega as perguntas pré-carregando suas respostas para evitar consultas adicionais
+          .where("lower(description) LIKE ?", "%#{term.downcase}%")  # Filtra perguntas cuja descrição contenha o termo de pesquisa, ignorando maiúsculas e minúsculas
+          .page(page)  # Pagina os resultados para exibição em páginas
+ end
+
+ def self.last_questions(page)
+  Question.includes(:answers).order('created_at desc').page(page)
+  end
+
 end

@@ -4,9 +4,7 @@ class Site::SearchController < SiteController
     # Método para buscar perguntas
     def questions
       # Carrega as perguntas com suas respostas associadas
-      @questions = Question.includes(:answers)  # Carrega as perguntas pré-carregando suas respostas para evitar consultas adicionais
-                           .where("lower(description) LIKE ?", "%#{params[:term].downcase}%")  # Filtra perguntas cuja descrição contenha o termo de pesquisa, ignorando maiúsculas e minúsculas
-                           .page(params[:page])  # Pagina os resultados para exibição em páginas
+      @questions = Question.search(params[:page], params[:term])
     end
   end
   
