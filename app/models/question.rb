@@ -16,14 +16,21 @@ class Question < ApplicationRecord
  paginates_per 5
 
 
- def self.search(page, term)
-  Question.includes(:answers)  # Carrega as perguntas pré-carregando suas respostas para evitar consultas adicionais
-          .where("lower(description) LIKE ?", "%#{term.downcase}%")  # Filtra perguntas cuja descrição contenha o termo de pesquisa, ignorando maiúsculas e minúsculas
-          .page(page)  # Pagina os resultados para exibição em páginas
- end
+# Scopes
 
- def self.last_questions(page)
-  Question.includes(:answers).order('created_at desc').page(page)
-  end
+# Este escopo realiza uma pesquisa baseada em um termo fornecido.
+# Ele traz todas as perguntas que contenham o termo pesquisado na descrição.
+scope :_search_, ->(page, term) {
+  includes(:answers) # Inclui as respostas associadas às perguntas para evitar consultas N+1
+  .where("lower(description) LIKE ?", "%#{term.downcase}%") # Filtra as perguntas com descrições que contenham o termo pesquisado (insensível a maiúsculas e minúsculas)
+  .page(page) # Pagina os resultados para a página especificada
+}
+
+# Este escopo traz as últimas perguntas ordenadas por data de criação.
+scope :last_questions, ->(page) {
+  includes(:answers) # Inclui as respostas associadas às perguntas para evitar consultas N+1
+  .order('created_at desc') # Ordena as perguntas pela data de criação em ordem decrescente
+  .page(page) # Pagina os resultados para a página especificada
+}
 
 end
