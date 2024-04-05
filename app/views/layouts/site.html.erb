@@ -67,7 +67,7 @@
     <div class="jumbotron">
       <!-- Main component for a primary marketing message or call to action -->
      <div class="jumbotron">
- <% unless params[:term] %>
+ <% unless params[:term] %>  <%# a menos que tenha um termo%>
  <h3>Últimas perguntas cadastradas...</h3>
  <% else %>
  <h3><%= "Resultados para \"#{params[:term]}\"..."%></h3>
