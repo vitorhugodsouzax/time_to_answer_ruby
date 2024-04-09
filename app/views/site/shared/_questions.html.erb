@@ -1,5 +1,6 @@
 <% @questions.each do |question| %>
-  <%= form_with url: site_answer_path, local: true do |form| %>
+  <%= form_with(url: site_answer_path) do |form| %>
+
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title"><%= question.description %></h3>
@@ -16,9 +17,15 @@
               </div>
             </li>
           <% end %>
-          <li style="list-style:none;">
-            <%= form.submit "Responder", class: "btn btn-default" %>
-          </li>
+<li style="list-style:none;"> 
+  <%= form.submit "Responder", class:"btn btn-default", id: "submit_#{question.id}" %>
+  <!--
+  O código acima gera um botão de envio dentro de um formulário.
+  id: "submit_#{question.id}" atribui um ID ao botão. O ID é gerado dinamicamente utilizando interpolação de strings 
+  (#{question.id}), onde question.id é o ID da pergunta associada ao botão. Isso garante que cada botão tenha um ID único.
+  -->
+</li>
+
         </ul>
       </div>
     </div>

@@ -1,0 +1,30 @@
+// Seleciona o elemento do botão com base no ID da pergunta respondida
+var element = document.getElementById("submit_<%= @answer.question_id%>");
+
+// Remove as classes existentes do botão
+element.classList.remove("btn-default");
+element.classList.remove("btn-success");
+element.classList.remove("btn-danger");
+
+// Verifica se a resposta está correta
+if (<%= @answer.correct %>) {
+    // Se estiver correta, adiciona a classe 'btn-success' ao botão
+    element.classList.add("btn-success");
+    // Exibe uma notificação de sucesso usando o Bootstrap Growl
+    $.bootstrapGrowl('Você acertou! \\o/', {
+        type: 'success', // Tipo da notificação (pode ser 'info', 'danger', 'success', ou null)
+        align: 'right', // Alinhamento da notificação ('left', 'right', ou 'center')
+        allow_dismiss: true, // Permite o fechamento da notificação
+        stackup_spacing: 10 // Espaçamento entre notificações empilhadas
+    });
+} else {
+    // Se estiver incorreta, adiciona a classe 'btn-danger' ao botão
+    element.classList.add("btn-danger");
+    // Exibe uma notificação de erro usando o Bootstrap Growl
+    $.bootstrapGrowl('Você errou! :(', {
+        type: 'danger', // Tipo da notificação (pode ser 'info', 'danger', 'success', ou null)
+        align: 'right', // Alinhamento da notificação ('left', 'right', ou 'center')
+        allow_dismiss: true, // Permite o fechamento da notificação
+        stackup_spacing: 10 // Espaçamento entre notificações empilhadas
+    });
+}
