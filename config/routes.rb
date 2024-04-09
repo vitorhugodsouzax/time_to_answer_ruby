@@ -15,10 +15,10 @@ Rails.application.routes.draw do
   namespace :admins_backoffice do
     get 'welcome/index'  #dashboard
     resources :admins  # administradores
-    resources :subjects  #assuntos/areas
+    resources :subjects  #assuntos/areas  
     resources :questions #perguntas
   end
-  devise_for :admins
+  devise_for :admins, skip: [:registrations]
   devise_for :users
   
   get 'inicio', to: 'site/welcome#index'
