@@ -81,21 +81,12 @@
                });
             <% end %>
 
-            <div class="form-group">
+ <div class="form-group">
                 <%= profille_form.label :birthdate, class:"control-label col-md-3 col-sm-3 col-xs-12" %>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-
-    
-          
-            
-    
-
-          
-          Expand Down
-    
-    
-  
-                  <%= profille_form.text_field :birthdate, class:"form-control col-md-7 col-xs-12"%>
+                  <%= profille_form.text_field :birthdate, 
+                      value: (l(@user.user_profille.birthdate) unless @user.user_profille.birthdate.blank?) ,
+                      class:"form-control col-md-7 col-xs-12 datepicker"%>
                 </div>
             </div>
           <% end %>
