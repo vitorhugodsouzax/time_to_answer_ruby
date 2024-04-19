@@ -5,3 +5,4 @@ module UsersBackofficeHelper
         avatar.attached? ? avatar : 'img.jpg'
      end
 end
+    

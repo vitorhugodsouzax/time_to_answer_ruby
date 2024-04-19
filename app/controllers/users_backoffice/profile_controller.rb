@@ -8,7 +8,7 @@ class UsersBackoffice::ProfileController < UsersBackofficeController
   def update
     if @user.update(params_user)
       bypass_sign_in(@user)
-      if params_user[:user_profile_attributes].present? && params_user[:user_profile_attributes][:avatar].present?
+      if params_user[:user_profille_attributes].present? && params_user[:user_profille_attributes][:avatar].present?
         redirect_to users_backoffice_welcome_index_path, notice: "Avatar atualizado com sucesso!"
       else  
         redirect_to users_backoffice_profile_path, notice: "Usuário atualizado com sucesso!"
@@ -25,7 +25,7 @@ class UsersBackoffice::ProfileController < UsersBackofficeController
 
   def params_user
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation,
-    user_profile_attributes: [:id, :address, :gender, :birthdate, :avatar])
+    user_profille_attributes: [:id, :address, :gender, :birthdate, :avatar])
   end
 
   def verify_password
