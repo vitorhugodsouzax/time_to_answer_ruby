@@ -5,22 +5,22 @@ class UsersBackoffice::ProfileController < UsersBackofficeController
   def edit
     @user.build_user_profille if @user.user_profille.blank?
   end
+
   def update
     if @user.update(params_user)
       bypass_sign_in(@user)
-      if params_user[:user_profille_attributes].present? && params_user[:user_profille_attributes][:avatar].present?
-        redirect_to users_backoffice_welcome_index_path, notice: "Avatar atualizado com sucesso!"
-      else  
+      unless params_user[:user_profille_attributes][:avatar].present?
         redirect_to users_backoffice_profile_path, notice: "Usuário atualizado com sucesso!"
       end
     else
       render :edit
-    end
-    
+    end    
   end
+  
   private
-  def set_user
-    @user = User.find(current_user.id)
+  
+    def set_user
+      @user = User.find(current_user.id)
   end
 
   def params_user
@@ -29,7 +29,6 @@ class UsersBackoffice::ProfileController < UsersBackofficeController
   end
 
   def verify_password
-
     if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
       params[:user].extract!(:password, :password_confirmation)
     end
