@@ -18,14 +18,15 @@
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Perfil do Usuário</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
             </div>
             <div class="clearfix"></div>
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-         <%= image_tag(avatar_url, alt:"...", class:"img-circle profile_img", id:"imgAvatarLg") %>             
-            <div class="profile_info">
+                <%= link_to image_tag(avatar_url, alt:"...", class:"img-circle profile_img", id:"imgAvatarMd"), '#', "data-toggle":"modal", "data-target":"#avatarModal" %>
+              </div>
+              <div class="profile_info">
                 <span>Seja bem-vindo,</span>
                 <h2><%= current_user.full_name %></h2>
               </div>
@@ -78,7 +79,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                 <%= image_tag avatar_url, alt:'', id:"imgAvatarSm" %>
+                    <%= image_tag avatar_url, alt:'', id:"imgAvatarSm" %>
                     <%= current_user.email %>
                     <span class=" fa fa-angle-down"></span>
                   </a>
@@ -124,7 +125,7 @@
                     <li>
                       <a>
                         <span class="image">
-                          <%= image_tag 'img.jpg', alt:"Profile Image" %>
+                          <%= image_tag 'img.jpg', alt:"   Image" %>
                         </span>
                         <span>
                           <span>John Smith</span>
@@ -187,7 +188,8 @@
     <div class="modal fade" id="avatarModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
-<%= form_with(url: users_backoffice_profile_path, model: current_user, class:"form-horizontal form-label-left") do |form| %>          <div class="modal-header">
+        <%= form_with(url: users_backoffice_profile_path, model: current_user, class:"form-horizontal form-label-left") do |form| %>
+          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">Avatar</h4>
           </div>
@@ -195,7 +197,7 @@
             <%= form.fields_for :user_profille do |profille_form|  %>
               <div class="form-group">
                 <%= profille_form.label :avatar %>
-                <%= image_tag(avatar_url, alt:"...", class:"img-circle profile_img") %>
+                <%= image_tag(avatar_url, alt:"...", class:"img-circle profile_img", id:"imgAvatarLg") %>
                 <%= profille_form.file_field :avatar %>
               </div>
             <% end %>
