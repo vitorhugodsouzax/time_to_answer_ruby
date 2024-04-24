@@ -1,9 +1,8 @@
 class UserStatistic < ApplicationRecord
   belongs_to :user
 
-  # Atributos virtuais
-  
+  # Virtual Attributes
   def total_questions
-    (self.right_questions || 0) + (self.wrong_questions || 0)
+    (right_questions || 0) + (wrong_questions || 0)
   end
 end

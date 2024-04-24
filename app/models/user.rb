@@ -5,8 +5,12 @@ class User < ApplicationRecord
               :recoverable, :rememberable, :validatable
      
        has_one :user_profille
+       has_one :user_statistic
        accepts_nested_attributes_for :user_profille, reject_if: :all_blank
      
+  # Callback
+  after_create :set_statistic
+
        # Validations
        validates :first_name, presence: true, length: { minimum: 3 }, on: :update
      
