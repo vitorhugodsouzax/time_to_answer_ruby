@@ -1,8 +1,8 @@
 $('#avatarModal').modal('hide');
 
-document.getElementById("imgAvatarLg").src="<%= url_for(@user.user_profille.avatar)%>";
-document.getElementById("imgAvatarMd").src="<%= url_for(@user.user_profille.avatar)%>";
-document.getElementById("imgAvatarSm").src="<%= url_for(@user.user_profille.avatar)%>";
+document.getElementById("imgAvatarLg").src="<%= url_for(@user.user_profile.avatar)%>";
+document.getElementById("imgAvatarMd").src="<%= url_for(@user.user_profile.avatar)%>";
+document.getElementById("imgAvatarSm").src="<%= url_for(@user.user_profile.avatar)%>";
 
 
 $.bootstrapGrowl('Avatar atualizado com sucesso!', {

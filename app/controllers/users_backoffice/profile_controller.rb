@@ -1,14 +1,15 @@
 class UsersBackoffice::ProfileController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_user
 
   def edit
-    @user.build_user_profille if @user.user_profille.blank?
+    @user.build_user_profile if @user.user_profile.blank?
   end
 
   def update
     if @user.update(params_for_user)
       bypass_sign_in(@user)
-      unless params_user[:user_profille_attributes][:avatar]
+      unless params_for_user[:user_profile_attributes][:avatar]
         redirect_to users_backoffice_profile_path, notice: "Usuário atualizado com sucesso!"
       end
     else
@@ -24,7 +25,7 @@ class UsersBackoffice::ProfileController < ApplicationController
 
   def params_for_user
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation,
-                                  user_profille_attributes: [:id, :address, :gender, :birthdate, :avatar])
+                                  user_profile_attributes: [:id, :address, :gender, :birthdate, :avatar])
   end
 
   def verify_password

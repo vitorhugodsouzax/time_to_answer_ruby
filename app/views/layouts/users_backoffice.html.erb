@@ -194,11 +194,11 @@
             <h4 class="modal-title" id="myModalLabel">Avatar</h4>
           </div>
           <div class="modal-body">
-            <%= form.fields_for :user_profille do |profille_form|  %>
+            <%= form.fields_for :user_profile do |profile_form|  %>
               <div class="form-group">
-                <%= profille_form.label :avatar %>
+                <%= profile_form.label :avatar %>
                 <%= image_tag(avatar_url, alt:"...", class:"img-circle profile_img", id:"imgAvatarLg") %>
-                <%= profille_form.file_field :avatar %>
+                <%= profile_form.file_field :avatar %>
               </div>
             <% end %>
           </div>
